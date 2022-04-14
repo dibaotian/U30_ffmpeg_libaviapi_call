@@ -1,0 +1,20 @@
++----------+
+|    in    |default--[1920x1080 1:1 xlnx_xvbm_8]--Parsed_xvbm_convert_0:default
+| (buffer) |
++----------+
+
+                                                       +--------------+
+auto_scaler_0:default--[1920x1080 1:1 yuv420p]--default|     out      |
+                                                       | (buffersink) |
+                                                       +--------------+
+
+                                                +-----------------------+
+in:default--[1920x1080 1:1 xlnx_xvbm_8]--default| Parsed_xvbm_convert_0 |default--[1920x1080 1:1 nv12]--auto_scaler_0:default
+                                                |    (xvbm_convert)     |
+                                                +-----------------------+
+
+                                                            +---------------+
+Parsed_xvbm_convert_0:default--[1920x1080 1:1 nv12]--default| auto_scaler_0 |default--[1920x1080 1:1 yuv420p]--out:default
+                                                            |    (scale)    |
+                                                            +---------------+
+
