@@ -1,6 +1,5 @@
 CC := gcc
 CFLAGS := -Wall -g -std=gnu99
-# CFLAGS := -w -g -std=gnu99
 LDFLAGS := -L/opt/xilinx/ffmpeg/lib -L/opt/xilinx/xrt/lib -L/opt/xilinx/xvbm/lib -L/opt/xilinx/xrm/lib
 LIBS := -lavdevice -lavformat -lavcodec -lavfilter -lswresample -lswscale -lavutil -lxvbm -lxma2api -lxrt_core -lxrt_coreutil -ldl -lm -lpthread -lstdc++ -lxrm -lxma2plugin -lxrt_core -lxrt_coreutil -ldl -lm -lpthread -lstdc++
 
@@ -10,13 +9,15 @@ INCLUDE := -I/opt/xilinx/ffmpeg/include -I/opt/xilinx/xrt/include/xma2  -I/opt/x
 # export LD_LIBRARY_PATH=/opt/xilinx/xrt/lib/
 # export LD_LIBRARY_PATH=/opt/xilinx/ffmpeg/lib/
 
+TARGET = ffmpeg_u30_decode
+
 SRC :=  test_decoder3.c
 OBJ := $(SRC:%.c=./%.o)
 
 .PHONY: all clean
 
 all: $(OBJ)
-	$(CC) $(OBJ) $(LDFLAGS) $(LIBS) -o ./test_decode
+	$(CC) $(OBJ) $(LDFLAGS) $(LIBS) -o ./$(TARGET)
 	@echo "!!![build done]"
 
 ./%.o:%.c
@@ -24,4 +25,4 @@ all: $(OBJ)
 
 clean:
 	rm *.o
-	rm test_decode 
+	rm $(TARGET)
